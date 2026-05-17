@@ -1,0 +1,210 @@
+body {
+    font-family: system-ui, sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+	background:#EFEFEF;
+}
+
+header {
+	border-bottom: 1px solid #444;
+  background: #1E263D;
+  color: #EFEFEF;
+  padding: 1rem 1.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  justify-content: center;
+  flex: 1;
+}
+
+#counter {
+  font-weight: bold;
+  min-width: 100px;
+  text-align: right;
+}
+
+
+.subtitle {
+  font-size: 0.9rem;
+  margin: 0;
+  opacity: 0.7;
+}
+
+#search {
+  padding: 6px 10px;
+  font-size: 1rem;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  margin-right: 10px;
+}
+#reset-button, #download-button {
+  padding: 6px 10px;
+  font-size: 1rem;
+  background-color: #3E1D34;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+#reset-button:hover {
+  background-color: #E73B89;
+  color: white;
+}
+
+#download-button:hover {
+  background-color: #E73B89;
+  color: white;
+}
+
+/* constrain the whole app to a comfy column*/
+main {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  padding-block: 2rem 1rem; /* top and bottom spacing */
+}
+
+.content {
+  width: min(90vw, 900px);
+  padding-inline: clamp(12px, 4vw, 24px);
+}
+
+.content { margin: 0 auto; }
+
+
+.flag-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 12px;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+
+.flag-grid li {
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 8px;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    transition: background 0.2s;
+	flex-wrap: wrap; /* allow name to break into multiple lines */
+}
+
+.flag-grid .name {
+    font-size: 0.95rem;
+    line-height: 1.2;
+    word-break: break-word;
+    flex: 1;
+}
+
+.flag-grid li:hover {
+    background: #E73B89;
+}
+
+.flag-grid li.seen {
+    background: #66DDF8;
+}
+
+/* when we switch to SVG flags */
+.flag-grid .flag-img {
+    width: 36px;                    /* tweak freely */
+    height: 24px;
+    margin-right: .6rem;
+    flex-shrink: 0;
+}
+}
+
+footer {
+    padding: 1rem;
+    text-align: center;
+}
+
+footer img {
+    max-width: 100%;
+    height: auto;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+/* Map centering & size */
+footer object#map {
+  display: block;
+  margin: 1.5rem auto 2rem;
+  width: 100%;
+  max-width: 1000px;
+  height: auto;              /* keep SVG’s own aspect ratio */
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  background: white;
+}
+
+
+
+/* Default country fill (light gray) & highlight color */
+footer object#map svg path,
+footer object#map svg polygon {
+  fill: #e5e5e5;
+  stroke: #999;
+  stroke-width: 0.4;
+}
+
+
+/* ---------- Mobile tweaks ---------- */
+@media (max-width: 600px) {
+  .flag-grid {
+    grid-template-columns: repeat(2, 1fr);   /* two‑column grid */
+  }
+  header {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .header-actions {
+    order: 2;          /* search + reset under the title */
+    margin-top: 0.5rem;
+  }
+  #counter {
+    align-self: flex-end;
+  }
+}
+
+
+#map-container {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 2rem;
+}
+
+#map-container svg {
+  width: 100%;
+  max-width: 900px;
+  height: auto;
+  display: block;
+}
+
+#map-container path {
+  vector-effect: non-scaling-stroke;
+  fill: #e5e5e5;
+}
+
+.country-seen {
+  fill: #66DDF8 !important;
+}
+
+.occupied {
+  fill: #3E1D34 !important;
+}
